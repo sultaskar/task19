@@ -1,4 +1,9 @@
+import com.oracle.tools.packager.IOUtils;
+
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Formatter;
@@ -40,6 +45,17 @@ public class Main {
         out.println("=======================================");
         out.printf("%-5s%34s","Итого",total);
             System.out.println("Чек создан");
+            try {
+                System.out.println(new File("out.txt").exists());
+                FileReader in = new FileReader("out.txt");
+                BufferedReader buf = new BufferedReader(in);
+
+                while (buf.readLine() != null) {
+                    System.out.print(buf.readLine());
+                }
+            }catch(IOException e2){
+                e2.printStackTrace();
+            }
 
         }catch(IOException e1){
             e1.printStackTrace();
