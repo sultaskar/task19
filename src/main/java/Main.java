@@ -20,7 +20,7 @@ public class Main {
         String listPosition[] = new String[amount];
         double listCost[] = new double[amount];
         double total = 0.0;
-        try (PrintWriter out = new PrintWriter(new FileWriter("out.txt"))){
+        try (PrintWriter out = new PrintWriter(new FileWriter("src/main/resources/out.txt"))){
         for (int i=0; i<amount; i++) {
             try {
                 System.out.println("Введите товар №" + (i + 1));
@@ -44,15 +44,16 @@ public class Main {
             }
         out.println("=======================================");
         out.printf("%-5s%34s","Итого",total);
+        out.close();
             System.out.println("Чек создан");
             try {
-                System.out.println(new File("out.txt").exists());
-                FileReader in = new FileReader("out.txt");
-                BufferedReader buf = new BufferedReader(in);
+                BufferedReader in = new BufferedReader(new FileReader("src/main/resources/out.txt"));
+                System.out.println(in.readLine());
 
-                while (buf.readLine() != null) {
-                    System.out.print(buf.readLine());
+                while (in.readLine() != null) {
+                    System.out.println(in.readLine());
                 }
+                in.close();
             }catch(IOException e2){
                 e2.printStackTrace();
             }
